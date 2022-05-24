@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<included>
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<Pattern>
+				[WayStockRewards] [%thread] [%-5level]
+				[%date{dd-MM-yyyy;HH:mm:ss.SSS}] [%-10c]: %m%n
+				<!-- [%-5level] [%date{dd-MM-yyyy;HH:mm:ss.SSS}] [%-10c]: %m%n -->
+			</Pattern>
+		</encoder>
+		<file>${LOG_PATH}/way-consumer.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/way-stock-rewards.log.%i</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>50</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>500MB</MaxFileSize>
+		</triggeringPolicy>
+	</appender>
+</included>

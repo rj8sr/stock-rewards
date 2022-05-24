@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration debug="true">
+
+	<property name="LOG_PATH" value="../logs" />
+
+	<property name="LOG_ARCHIVE" value="${LOG_PATH}/archive" />
+	<timestamp key="timestamp-by-second"
+		datePattern="yyyyMMdd'T'HHmmss" />
+
+	<appender name="Console-Appender"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout>
+			<pattern>
+				[WayStockRewards] [%thread] [%-5level]
+				[%date{dd-MM-yyyy;HH:mm:ss.SSS}] [%-10c]: %m%n
+			</pattern>
+		</layout>
+	</appender>
+
+	<include
+		resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include
+		resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	<include resource="logback-common.xml" />
+
+	<!-- This is the main log level for the entire application, currently set 
+		to DEBUG, can be changed to INFO or ERROR based on need -->
+	<root level="DEBUG">
+		<appender-ref ref="Console-Appender" />
+		<appender-ref ref="FILE" />
+	</root>
+
+	<!-- to disable all logs for com.mchange <logger name="com.mchange" level="OFF" 
+		/> -->
+
+	<!-- Change log levels for individual packages below -->
+	<!-- Note: logger settings in application.properties will override the below 
+		settings -->
+	<logger name="org.hibernate" level="ERROR">
+		<appender-ref ref="FILE" />
+	</logger>
+	<logger name="com.mchange" level="ERROR">
+		<appender-ref ref="FILE" />
+	</logger>
+	<logger name="org.apache" level="ERROR">
+		<appender-ref ref="FILE" />
+	</logger>
+	<logger name="springfox.documentation" level="ERROR">
+		<appender-ref ref="FILE" />
+	</logger>
+	<logger name="com.hazelcast" level="ERROR">
+		<appender-ref ref="FILE" />
+	</logger>
+	<logger name="org.springframework" level="ERROR">
+		<appender-ref ref="FILE" />
+	</logger>
+	<logger name="org.springframework.jdbc.core.JdbcTemplate"
+		level="TRACE">
+		<appender-ref ref="FILE" />
+	</logger>
+	<logger
+		name="org.springframework.jdbc.core.StatementCreatorUtils"
+		level="TRACE">
+		<appender-ref ref="FILE" />
+	</logger>
+	<logger name="java.sql" level="TRACE">
+		<appender-ref ref="FILE" />
+	</logger>
+</configuration>
